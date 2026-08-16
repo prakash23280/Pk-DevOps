@@ -99,7 +99,7 @@ export const HeroSection: React.FC = () => {
           className="h-screen w-auto max-w-none object-contain origin-right scale-95 md:scale-[0.98] lg:scale-100"
         >
           <source
-            src="/videos/hero.mp4"
+            src={`${import.meta.env.BASE_URL}videos/hero.mp4`}
             type="video/mp4"
           />
         </video>
