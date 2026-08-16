@@ -12,14 +12,14 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <footer
-      id="contact"
-      className="relative w-full bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black pt-16 pb-16 px-6 sm:px-12 lg:px-20 overflow-hidden"
-    >
-      <div className="max-w-7xl mx-auto w-full relative z-10">
-        
-        {/* Split Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+  <footer
+    id="contact"
+    className="relative z-[100] isolate w-full bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black pt-16 pb-16 px-6 sm:px-12 lg:px-20 overflow-hidden"
+  >
+    <div className="max-w-7xl mx-auto w-full relative z-10">
+
+      {/* Split Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column (5 Cols) */}
           <div className="lg:col-span-5 flex flex-col justify-between">
