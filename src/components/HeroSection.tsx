@@ -46,6 +46,9 @@ export const HeroSection: React.FC = () => {
 
   const [isHovered, setIsHovered] = useState(false);
 
+  const [activeWord, setActiveWord] =
+    useState<'BUILD' | 'AUTOMATE' | 'DEPLOY'>('BUILD');
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setCursorPos({
@@ -87,9 +90,9 @@ export const HeroSection: React.FC = () => {
         />
       )}
 
-      {/* ================= HERO VIDEO ================= */}
+      {/* ================= DESKTOP HERO VIDEO ================= */}
 
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-black flex items-center justify-end">
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-black hidden md:flex items-center justify-end">
 
         <video
           autoPlay
@@ -99,10 +102,10 @@ export const HeroSection: React.FC = () => {
           className="h-screen w-auto max-w-none object-contain origin-right scale-95 md:scale-[0.98] lg:scale-100"
         >
           <source
-  src={`${import.meta.env.BASE_URL}videos/hero.mp4`}
-  type="video/mp4"
-/>
-</video>
+            src={`${import.meta.env.BASE_URL}videos/hero.mp4`}
+            type="video/mp4"
+          />
+        </video>
 
         {/* Left cinematic blend */}
 
@@ -160,6 +163,51 @@ export const HeroSection: React.FC = () => {
 
           </div>
         </div>
+      </div>
+
+      {/* ================= MOBILE VIDEO ================= */}
+
+      <div className="absolute inset-0 z-[5] pointer-events-none md:hidden">
+
+        <motion.div
+          key={activeWord}
+          initial={{
+            opacity: 0,
+            scale: 0.94,
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+          }}
+          transition={{
+            duration: 0.35,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          className="absolute left-[57%] top-[30%] w-[38%] h-[27%] overflow-hidden rounded-sm border border-[#D4AF37]/50 bg-black shadow-[0_0_25px_rgba(212,175,55,0.18)]"
+        >
+
+          <video
+            key={activeWord}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source
+              src={`${import.meta.env.BASE_URL}videos/hero.mp4`}
+              type="video/mp4"
+            />
+          </video>
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10" />
+
+          <div className="absolute bottom-1 left-2 text-[7px] tracking-[0.2em] text-[#E8D7C5]/70 uppercase">
+            {activeWord}
+          </div>
+
+        </motion.div>
+
       </div>
 
       {/* ================= CONTENT ================= */}
@@ -238,24 +286,46 @@ export const HeroSection: React.FC = () => {
               variants={fadeUpVariants}
               className="relative mb-3.5 select-none"
             >
+
               <h1
                 className="text-6xl sm:text-7xl md:text-8xl lg:text-[7.2rem] xl:text-[7.8rem] tracking-tight uppercase leading-[0.83]"
                 style={{
                   fontFamily: "'Bebas Neue', sans-serif",
                 }}
               >
-                <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448] drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)]">
+
+                {/* BUILD */}
+
+                <span
+                  onClick={() => setActiveWord('BUILD')}
+                  onTouchStart={() => setActiveWord('BUILD')}
+                  className="relative block cursor-pointer md:cursor-default text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448] drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)]"
+                >
                   BUILD
                 </span>
 
-                <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A] drop-shadow-[0_8px_25px_rgba(201,158,93,0.35)]">
+                {/* AUTOMATE */}
+
+                <span
+                  onClick={() => setActiveWord('AUTOMATE')}
+                  onTouchStart={() => setActiveWord('AUTOMATE')}
+                  className="relative block cursor-pointer md:cursor-default text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A] drop-shadow-[0_8px_25px_rgba(201,158,93,0.35)]"
+                >
                   AUTOMATE
                 </span>
 
-                <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#DFBE8A] via-[#9B7640] to-[#342410] drop-shadow-[0_10px_30px_rgba(155,118,64,0.4)]">
+                {/* DEPLOY */}
+
+                <span
+                  onClick={() => setActiveWord('DEPLOY')}
+                  onTouchStart={() => setActiveWord('DEPLOY')}
+                  className="relative block cursor-pointer md:cursor-default text-transparent bg-clip-text bg-gradient-to-b from-[#DFBE8A] via-[#9B7640] to-[#342410] drop-shadow-[0_10px_30px_rgba(155,118,64,0.4)]"
+                >
                   DEPLOY
                 </span>
+
               </h1>
+
             </motion.div>
 
             <motion.div
@@ -382,7 +452,9 @@ export const HeroSection: React.FC = () => {
         </div>
 
         <div className="h-2" />
+
       </div>
+
     </section>
   );
 };
